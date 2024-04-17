@@ -9,8 +9,7 @@ In Activated Mode:
 </br>
 In DeActivated Mode:
 - Gate is opened
-- Emergency can't be activated
-<\br>
+- Emergency can't be activated</br>
 Change between modes by pressing on system button for 3s and entering the pass code defined in the code (look main.c).
 </br>
 Reset the emergency state by holding the reset button for 8s and entering the pass code.
