@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\20109\AppData\Local\Temp\xcAsa0.\driver_tmp_3.o
+ C:\Users\20109\AppData\Local\Temp\xcAs7r0.\driver_tmp_3.o
  -Odist/default/production\DoorLockerSys.production.hex
  -logfile=dist/default/production\DoorLockerSys.production.hxl
  -addressing=1
@@ -14,21 +14,21 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 5h		(C:\Users\20109\AppData\Local\Temp\xcAsa0.\driver_tmp_3.o)
-  8h - 43h		(C:\Users\20109\AppData\Local\Temp\xcAsa0.\driver_tmp_3.o)
-  600h - 666h		(C:\Users\20109\AppData\Local\Temp\xcAsa0.\driver_tmp_3.o)
-  668h - 1B3Eh		(C:\Users\20109\AppData\Local\Temp\xcAsa0.\driver_tmp_3.o)
-  1B40h - 1B41h		(C:\Users\20109\AppData\Local\Temp\xcAsa0.\driver_tmp_3.o)
+  0h - 5h		(C:\Users\20109\AppData\Local\Temp\xcAs7r0.\driver_tmp_3.o)
+  8h - 47h		(C:\Users\20109\AppData\Local\Temp\xcAs7r0.\driver_tmp_3.o)
+  600h - 666h		(C:\Users\20109\AppData\Local\Temp\xcAs7r0.\driver_tmp_3.o)
+  668h - 1B86h		(C:\Users\20109\AppData\Local\Temp\xcAs7r0.\driver_tmp_3.o)
+  1B88h - 1B89h		(C:\Users\20109\AppData\Local\Temp\xcAs7r0.\driver_tmp_3.o)
  Unused ranges:
   6h - 7h
-  44h - 5FFh
+  48h - 5FFh
   667h - 667h
-  1B3Fh - 1B3Fh
+  1B87h - 1B87h
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\20109\AppData\Local\Temp\xcAsa0.\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\20109\AppData\Local\Temp\xcAs7r0.\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -36,7 +36,7 @@
 00000010 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000020 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000030 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000040 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
+00000040 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00000600 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000610 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -377,6 +377,10 @@
 00001B00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001B10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001B20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001B30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 --
-00001B40 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --
-00001B50 | --
+00001B30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00001B40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00001B50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00001B60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00001B70 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00001B80 | H1 H1 H1 H1 H1 H1 H1 -- H1 H1 -- -- -- -- -- --
+00001B90 | --

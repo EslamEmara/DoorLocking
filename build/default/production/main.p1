@@ -20,8 +20,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc\pic18f452.h: 6036: extern volatile __bit GIE __attribute__((address(0x7F97)));
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
 [p mainexit ]
-"63 main.c
-[; ;main.c: 63:     Modes_t mode = ACTIVATED;
+"67 main.c
+[; ;main.c: 67:     Modes_t mode = ACTIVATED;
 [c E2432 0 1 .. ]
 [n E2432 . ACTIVATED DEACTIVATED  ]
 "3591 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc\pic18f452.h
@@ -36,8 +36,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./motor.h
 [; ;./motor.h: 19: void motor_init(void);
 [v _motor_init `(v ~T0 @X0 0 ef ]
-"72 main.c
-[; ;main.c: 72:     button_init(PORT_A,4);
+"76 main.c
+[; ;main.c: 76:     button_init(PORT_A,4);
 [c E2181 0 1 2 3 4 .. ]
 [n E2181 . PORT_A PORT_B PORT_C PORT_D PORT_E  ]
 "19 ./button.h
@@ -58,8 +58,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20 ./button.h
 [; ;./button.h: 20: uint8_t button_getState(Ports_t port , uint8_t pinNo);
 [v _button_getState `(uc ~T0 @X0 0 ef2`E2181`uc ]
-"83 main.c
-[; ;main.c: 83:         if(button_getState(PORT_A,3)== HIGH){
+"87 main.c
+[; ;main.c: 87:         if(button_getState(PORT_A,3)== HIGH){
 [c E2188 0 1 .. ]
 [n E2188 . LOW HIGH  ]
 "44 ./lcd.h
@@ -510,6 +510,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _emergencyTimer
 -> 0 `i
 ]
+"32
+[; ;main.c: 32: int rstButtonTimer=0;
+[v _rstButtonTimer `i ~T0 @X0 1 e ]
+[i _rstButtonTimer
+-> 0 `i
+]
 [v $root$_Timer0_ISR `(v ~T0 @X0 0 e ]
 "33
 [; ;main.c: 33: void __attribute__((picinterrupt(("")))) Timer0_ISR(){
@@ -543,567 +549,623 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 43:         emergencyTimer++;
 [e ++ _emergencyTimer -> 1 `i ]
 "44
-[; ;main.c: 44:     }
+[; ;main.c: 44:         rstButtonTimer++;
+[e ++ _rstButtonTimer -> 1 `i ]
+"45
+[; ;main.c: 45:     }
 }
 [e :U 240 ]
-"45
-[; ;main.c: 45: }
+"46
+[; ;main.c: 46: }
 [e :UE 239 ]
 }
-"47
-[; ;main.c: 47: void Timer0_init(){
+"48
+[; ;main.c: 48: void Timer0_init(){
 [v _Timer0_init `(v ~T0 @X0 1 ef ]
 {
 [e :U _Timer0_init ]
 [f ]
-"48
-[; ;main.c: 48:     T0CON = 0X87;
-[e = _T0CON -> -> 135 `i `uc ]
 "49
-[; ;main.c: 49:     TMR0H = 0xF0;
-[e = _TMR0H -> -> 240 `i `uc ]
+[; ;main.c: 49:     T0CON = 0X87;
+[e = _T0CON -> -> 135 `i `uc ]
 "50
-[; ;main.c: 50:     TMR0L = 0xBD;
-[e = _TMR0L -> -> 189 `i `uc ]
+[; ;main.c: 50:     TMR0H = 0xF0;
+[e = _TMR0H -> -> 240 `i `uc ]
 "51
-[; ;main.c: 51:     TMR0IE = 1;
-[e = _TMR0IE -> -> 1 `i `b ]
+[; ;main.c: 51:     TMR0L = 0xBD;
+[e = _TMR0L -> -> 189 `i `uc ]
 "52
-[; ;main.c: 52:     GIE =1;
-[e = _GIE -> -> 1 `i `b ]
+[; ;main.c: 52:     TMR0IE = 1;
+[e = _TMR0IE -> -> 1 `i `b ]
 "53
-[; ;main.c: 53: }
+[; ;main.c: 53:     GIE =1;
+[e = _GIE -> -> 1 `i `b ]
+"54
+[; ;main.c: 54: }
 [e :UE 241 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"55
-[; ;main.c: 55: void main(void) {
+"56
+[; ;main.c: 56: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"56
-[; ;main.c: 56:  uint8_t keypad_reading = 0;
+"57
+[; ;main.c: 57:  uint8_t keypad_reading = 0;
 [v _keypad_reading `uc ~T0 @X0 1 a ]
 [e = _keypad_reading -> -> 0 `i `uc ]
-"57
-[; ;main.c: 57:     uint8_t inputCounter = 0;
+"58
+[; ;main.c: 58:     uint8_t inputCounter = 0;
 [v _inputCounter `uc ~T0 @X0 1 a ]
 [e = _inputCounter -> -> 0 `i `uc ]
-"58
-[; ;main.c: 58:     uint8_t emergencyState = 0;
+"59
+[; ;main.c: 59:     uint8_t emergencyState = 0;
 [v _emergencyState `uc ~T0 @X0 1 a ]
 [e = _emergencyState -> -> 0 `i `uc ]
-"59
-[; ;main.c: 59:     uint8_t buzzerSet = 0;
+"60
+[; ;main.c: 60:     uint8_t buzzerSet = 0;
 [v _buzzerSet `uc ~T0 @X0 1 a ]
 [e = _buzzerSet -> -> 0 `i `uc ]
-[v F2447 `uc ~T0 @X0 -> 5 `i s ]
-[i F2447
+"61
+[; ;main.c: 61:     uint8_t rstFirstPress = 0;
+[v _rstFirstPress `uc ~T0 @X0 1 a ]
+[e = _rstFirstPress -> -> 0 `i `uc ]
+"62
+[; ;main.c: 62:     uint8_t sysFirstPress = 0;
+[v _sysFirstPress `uc ~T0 @X0 1 a ]
+[e = _sysFirstPress -> -> 0 `i `uc ]
+[v F2450 `uc ~T0 @X0 -> 5 `i s ]
+[i F2450
 :U ..
-"60
-[; ;main.c: 60:     char passCode[5] = {0};
+"64
+[; ;main.c: 64:     char passCode[5] = {0};
 -> -> 0 `i `uc
 ..
 ]
 [v _passCode `uc ~T0 @X0 -> 5 `i a ]
-[e = _passCode F2447 ]
-"62
-[; ;main.c: 62:     uint8_t passCodeReq = 0;
+[e = _passCode F2450 ]
+"66
+[; ;main.c: 66:     uint8_t passCodeReq = 0;
 [v _passCodeReq `uc ~T0 @X0 1 a ]
 [e = _passCodeReq -> -> 0 `i `uc ]
-"63
-[; ;main.c: 63:     Modes_t mode = ACTIVATED;
+"67
+[; ;main.c: 67:     Modes_t mode = ACTIVATED;
 [v _mode `E2432 ~T0 @X0 1 a ]
 [e = _mode . `E2432 0 ]
-"65
-[; ;main.c: 65:     ADCON1 = 0x07;
-[e = _ADCON1 -> -> 7 `i `uc ]
-"66
-[; ;main.c: 66:     Timer0_init();
-[e ( _Timer0_init ..  ]
 "69
-[; ;main.c: 69:     LCD_init();
-[e ( _LCD_init ..  ]
+[; ;main.c: 69:     ADCON1 = 0x07;
+[e = _ADCON1 -> -> 7 `i `uc ]
 "70
-[; ;main.c: 70:     keypad_init();
-[e ( _keypad_init ..  ]
-"71
-[; ;main.c: 71:     motor_init();
-[e ( _motor_init ..  ]
-"72
-[; ;main.c: 72:     button_init(PORT_A,4);
-[e ( _button_init (2 , . `E2181 0 -> -> 4 `i `uc ]
+[; ;main.c: 70:     Timer0_init();
+[e ( _Timer0_init ..  ]
 "73
-[; ;main.c: 73:     button_init(PORT_A,3);
-[e ( _button_init (2 , . `E2181 0 -> -> 3 `i `uc ]
+[; ;main.c: 73:     LCD_init();
+[e ( _LCD_init ..  ]
 "74
-[; ;main.c: 74:     button_init(PORT_A,5);
-[e ( _button_init (2 , . `E2181 0 -> -> 5 `i `uc ]
+[; ;main.c: 74:     keypad_init();
+[e ( _keypad_init ..  ]
 "75
-[; ;main.c: 75:     pir_init(PORT_A,2);
-[e ( _pir_init (2 , . `E2181 0 -> -> 2 `i `uc ]
+[; ;main.c: 75:     motor_init();
+[e ( _motor_init ..  ]
 "76
-[; ;main.c: 76:     buzzer_init(PORT_A,0);
-[e ( _buzzer_init (2 , . `E2181 0 -> -> 0 `i `uc ]
+[; ;main.c: 76:     button_init(PORT_A,4);
+[e ( _button_init (2 , . `E2181 0 -> -> 4 `i `uc ]
 "77
-[; ;main.c: 77:     led_init(PORT_B,4);
-[e ( _led_init (2 , . `E2181 1 -> -> 4 `i `uc ]
+[; ;main.c: 77:     button_init(PORT_A,3);
+[e ( _button_init (2 , . `E2181 0 -> -> 3 `i `uc ]
 "78
-[; ;main.c: 78:     led_init(PORT_B,5);
-[e ( _led_init (2 , . `E2181 1 -> -> 5 `i `uc ]
+[; ;main.c: 78:     button_init(PORT_A,5);
+[e ( _button_init (2 , . `E2181 0 -> -> 5 `i `uc ]
 "79
-[; ;main.c: 79:     led_on(PORT_B,4);
-[e ( _led_on (2 , . `E2181 1 -> -> 4 `i `uc ]
+[; ;main.c: 79:     pir_init(PORT_A,2);
+[e ( _pir_init (2 , . `E2181 0 -> -> 2 `i `uc ]
+"80
+[; ;main.c: 80:     buzzer_init(PORT_A,0);
+[e ( _buzzer_init (2 , . `E2181 0 -> -> 0 `i `uc ]
 "81
-[; ;main.c: 81:     uint8_t last_reading = 0;
+[; ;main.c: 81:     led_init(PORT_B,4);
+[e ( _led_init (2 , . `E2181 1 -> -> 4 `i `uc ]
+"82
+[; ;main.c: 82:     led_init(PORT_B,5);
+[e ( _led_init (2 , . `E2181 1 -> -> 5 `i `uc ]
+"83
+[; ;main.c: 83:     led_on(PORT_B,4);
+[e ( _led_on (2 , . `E2181 1 -> -> 4 `i `uc ]
+"85
+[; ;main.c: 85:     uint8_t last_reading = 0;
 [v _last_reading `uc ~T0 @X0 1 a ]
 [e = _last_reading -> -> 0 `i `uc ]
-"82
-[; ;main.c: 82:     while(1){
+"86
+[; ;main.c: 86:     while(1){
 [e :U 244 ]
 {
-"83
-[; ;main.c: 83:         if(button_getState(PORT_A,3)== HIGH){
+"87
+[; ;main.c: 87:         if(button_getState(PORT_A,3)== HIGH){
 [e $ ! == -> ( _button_getState (2 , . `E2181 0 -> -> 3 `i `uc `i -> . `E2188 1 `i 246  ]
 {
-"84
-[; ;main.c: 84:             sysButtonTimer = 0;
-[e = _sysButtonTimer -> 0 `i ]
-"85
-[; ;main.c: 85:             while(button_getState(PORT_A,3)== HIGH){
-[e $U 247  ]
-[e :U 248 ]
-{
-"86
-[; ;main.c: 86:                 if(sysButtonTimer >=3){
-[e $ ! >= _sysButtonTimer -> 3 `i 250  ]
-{
-"87
-[; ;main.c: 87:                     passCodeReq = 1;
-[e = _passCodeReq -> -> 1 `i `uc ]
 "88
-[; ;main.c: 88:                     passCode[0] = '\0';
-[e = *U + &U _passCode * -> -> -> 0 `i `ui `ux -> -> # *U &U _passCode `ui `ux -> -> 0 `ui `uc ]
+[; ;main.c: 88:             if(sysFirstPress){
+[e $ ! != -> _sysFirstPress `i -> 0 `i 247  ]
+{
 "89
-[; ;main.c: 89:                     inputCounter = 0;
-[e = _inputCounter -> -> 0 `i `uc ]
+[; ;main.c: 89:                sysButtonTimer = 0;
+[e = _sysButtonTimer -> 0 `i ]
 "90
-[; ;main.c: 90:                     LCD_clearScreen();
-[e ( _LCD_clearScreen ..  ]
+[; ;main.c: 90:                sysFirstPress = 0;
+[e = _sysFirstPress -> -> 0 `i `uc ]
 "91
-[; ;main.c: 91:                     break;
-[e $U 249  ]
-"92
-[; ;main.c: 92:                 }
-}
-[e :U 250 ]
-"93
-[; ;main.c: 93:             }
+[; ;main.c: 91:             }
 }
 [e :U 247 ]
-"85
-[; ;main.c: 85:             while(button_getState(PORT_A,3)== HIGH){
-[e $ == -> ( _button_getState (2 , . `E2181 0 -> -> 3 `i `uc `i -> . `E2188 1 `i 248  ]
-[e :U 249 ]
-"94
-[; ;main.c: 94:         }
-}
-[e :U 246 ]
-"96
-[; ;main.c: 96:          if(button_getState(PORT_A,5)== HIGH){
-[e $ ! == -> ( _button_getState (2 , . `E2181 0 -> -> 5 `i `uc `i -> . `E2188 1 `i 251  ]
+"92
+[; ;main.c: 92:             if(sysButtonTimer >=3){
+[e $ ! >= _sysButtonTimer -> 3 `i 248  ]
 {
-"98
-[; ;main.c: 98:              emergencyState = 1;
-[e = _emergencyState -> -> 1 `i `uc ]
-"99
-[; ;main.c: 99:              passCodeReq=0;
-[e = _passCodeReq -> -> 0 `i `uc ]
-"100
-[; ;main.c: 100:          }
-}
-[e :U 251 ]
-"102
-[; ;main.c: 102:          if(button_getState(PORT_A,4)== HIGH){
-[e $ ! == -> ( _button_getState (2 , . `E2181 0 -> -> 4 `i `uc `i -> . `E2188 1 `i 252  ]
-{
-"103
-[; ;main.c: 103:                     passCodeReq = 1;
+"93
+[; ;main.c: 93:                 passCodeReq = 1;
 [e = _passCodeReq -> -> 1 `i `uc ]
-"104
-[; ;main.c: 104:                     passCode[0] = '\0';
+"94
+[; ;main.c: 94:                 passCode[0] = '\0';
 [e = *U + &U _passCode * -> -> -> 0 `i `ui `ux -> -> # *U &U _passCode `ui `ux -> -> 0 `ui `uc ]
-"105
-[; ;main.c: 105:                     inputCounter = 0;
+"95
+[; ;main.c: 95:                 inputCounter = 0;
 [e = _inputCounter -> -> 0 `i `uc ]
-"106
-[; ;main.c: 106:                     LCD_clearScreen();
+"96
+[; ;main.c: 96:                 LCD_clearScreen();
 [e ( _LCD_clearScreen ..  ]
-"107
-[; ;main.c: 107:             }
+"97
+[; ;main.c: 97:                 sysFirstPress = 1;
+[e = _sysFirstPress -> -> 1 `i `uc ]
+"98
+[; ;main.c: 98:             }
 }
-[e :U 252 ]
-"109
-[; ;main.c: 109:         if(passCodeReq == 1){
-[e $ ! == -> _passCodeReq `i -> 1 `i 253  ]
+[e :U 248 ]
+"99
+[; ;main.c: 99:         }
+}
+[e $U 249  ]
+"100
+[; ;main.c: 100:         else{
+[e :U 246 ]
 {
+"101
+[; ;main.c: 101:             sysFirstPress = 1;
+[e = _sysFirstPress -> -> 1 `i `uc ]
+"102
+[; ;main.c: 102:         }
+}
+[e :U 249 ]
+"104
+[; ;main.c: 104:          if(button_getState(PORT_A,5)== HIGH){
+[e $ ! == -> ( _button_getState (2 , . `E2181 0 -> -> 5 `i `uc `i -> . `E2188 1 `i 250  ]
+{
+"106
+[; ;main.c: 106:              emergencyState = 1;
+[e = _emergencyState -> -> 1 `i `uc ]
+"107
+[; ;main.c: 107:              passCodeReq=0;
+[e = _passCodeReq -> -> 0 `i `uc ]
+"108
+[; ;main.c: 108:          }
+}
+[e :U 250 ]
 "110
-[; ;main.c: 110:             LCD_displayStringRowColumn(0,0,"Pass code: ");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 1C ]
+[; ;main.c: 110:          if(button_getState(PORT_A,4)== HIGH){
+[e $ ! == -> ( _button_getState (2 , . `E2181 0 -> -> 4 `i `uc `i -> . `E2188 1 `i 251  ]
+{
 "111
-[; ;main.c: 111:             if(inputCounter<4){
-[e $ ! < -> _inputCounter `i -> 4 `i 254  ]
+[; ;main.c: 111:              if(rstFirstPress){
+[e $ ! != -> _rstFirstPress `i -> 0 `i 252  ]
 {
 "112
-[; ;main.c: 112:                 keypad_reading=keypad_read();
-[e = _keypad_reading ( _keypad_read ..  ]
+[; ;main.c: 112:                  rstButtonTimer =0;
+[e = _rstButtonTimer -> 0 `i ]
 "113
-[; ;main.c: 113:                 if(keypad_reading == 0) last_reading = 0;
-[e $ ! == -> _keypad_reading `i -> 0 `i 255  ]
-[e = _last_reading -> -> 0 `i `uc ]
-[e :U 255 ]
+[; ;main.c: 113:                  rstFirstPress = 0;
+[e = _rstFirstPress -> -> 0 `i `uc ]
+"114
+[; ;main.c: 114:              }
+}
+[e :U 252 ]
+"115
+[; ;main.c: 115:              if(rstButtonTimer>=8){
+[e $ ! >= _rstButtonTimer -> 8 `i 253  ]
+{
+"116
+[; ;main.c: 116:                     passCodeReq = 1;
+[e = _passCodeReq -> -> 1 `i `uc ]
 "117
-[; ;main.c: 117:                 if(keypad_reading != 255 && keypad_reading != 0 && keypad_reading != last_reading){
-[e $ ! && && != -> _keypad_reading `i -> 255 `i != -> _keypad_reading `i -> 0 `i != -> _keypad_reading `i -> _last_reading `i 256  ]
-{
-"118
-[; ;main.c: 118:                     last_reading = keypad_reading;
-[e = _last_reading _keypad_reading ]
-"119
-[; ;main.c: 119:                     LCD_goToRowColumn(1,inputCounter);
-[e ( _LCD_goToRowColumn (2 , -> -> 1 `i `uc _inputCounter ]
-"120
-[; ;main.c: 120:                     LCD_displayCharacter(keypad_reading);
-[e ( _LCD_displayCharacter (1 _keypad_reading ]
-"121
-[; ;main.c: 121:                     passCode[inputCounter] = keypad_reading;
-[e = *U + &U _passCode * -> _inputCounter `ux -> -> # *U &U _passCode `ui `ux -> _keypad_reading `uc ]
-"122
-[; ;main.c: 122:                     inputCounter++;
-[e ++ _inputCounter -> -> 1 `i `uc ]
-"123
-[; ;main.c: 123:                 }
-}
-[e :U 256 ]
-"124
-[; ;main.c: 124:             }
-}
-[e $U 257  ]
-"125
-[; ;main.c: 125:             else{
-[e :U 254 ]
-{
-"126
-[; ;main.c: 126:                 passCode[inputCounter] = '\0';
-[e = *U + &U _passCode * -> _inputCounter `ux -> -> # *U &U _passCode `ui `ux -> -> 0 `ui `uc ]
-"127
-[; ;main.c: 127:                 if (strcmp(passCode,"1234")==0){
-[e $ ! == ( _strcmp (2 , -> &U _passCode `*Cuc :s 2C -> 0 `i 258  ]
-{
-"128
-[; ;main.c: 128:                     if(emergencyState){
-[e $ ! != -> _emergencyState `i -> 0 `i 259  ]
-{
-"129
-[; ;main.c: 129:                         emergencyState =0;
-[e = _emergencyState -> -> 0 `i `uc ]
-"130
-[; ;main.c: 130:                     }
-}
-[e $U 260  ]
-"131
-[; ;main.c: 131:                     else{
-[e :U 259 ]
-{
-"132
-[; ;main.c: 132:                         if (mode == ACTIVATED)
-[e $ ! == -> _mode `ui -> . `E2432 0 `ui 261  ]
-"133
-[; ;main.c: 133:                             mode = DEACTIVATED;
-[e = _mode . `E2432 1 ]
-[e $U 262  ]
-"134
-[; ;main.c: 134:                         else{
-[e :U 261 ]
-{
-"135
-[; ;main.c: 135:                             mode = ACTIVATED;
-[e = _mode . `E2432 0 ]
-"136
-[; ;main.c: 136:                             activatedStateTimer = 0;
-[e = _activatedStateTimer -> 0 `i ]
-"137
-[; ;main.c: 137:                         }
-}
-[e :U 262 ]
-"138
-[; ;main.c: 138:                     }
-}
-[e :U 260 ]
-"139
-[; ;main.c: 139:                 }
-}
-[e $U 263  ]
-"140
-[; ;main.c: 140:                 else{
-[e :U 258 ]
-{
-"141
-[; ;main.c: 141:                     LCD_clearScreen();
-[e ( _LCD_clearScreen ..  ]
-"142
-[; ;main.c: 142:                     LCD_displayStringRowColumn(0,0,"PASS ERR");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 3C ]
-"143
-[; ;main.c: 143:                     _delay((unsigned long)((1000)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"144
-[; ;main.c: 144:                 }
-}
-[e :U 263 ]
-"146
-[; ;main.c: 146:                 passCodeReq=0;
-[e = _passCodeReq -> -> 0 `i `uc ]
-"147
-[; ;main.c: 147:                 passCode[0] = '\0';
+[; ;main.c: 117:                     passCode[0] = '\0';
 [e = *U + &U _passCode * -> -> -> 0 `i `ui `ux -> -> # *U &U _passCode `ui `ux -> -> 0 `ui `uc ]
-"148
-[; ;main.c: 148:                 inputCounter = 0;
+"118
+[; ;main.c: 118:                     inputCounter = 0;
 [e = _inputCounter -> -> 0 `i `uc ]
-"149
-[; ;main.c: 149:                 LCD_clearScreen();
+"119
+[; ;main.c: 119:                     LCD_clearScreen();
 [e ( _LCD_clearScreen ..  ]
-"150
-[; ;main.c: 150:             }
-}
-[e :U 257 ]
-"151
-[; ;main.c: 151:         }
+"120
+[; ;main.c: 120:                     rstFirstPress =1;
+[e = _rstFirstPress -> -> 1 `i `uc ]
+"121
+[; ;main.c: 121:              }
 }
 [e :U 253 ]
+"122
+[; ;main.c: 122:             }
+}
+[e $U 254  ]
+"123
+[; ;main.c: 123:          else{
+[e :U 251 ]
+{
+"124
+[; ;main.c: 124:              rstFirstPress = 1;
+[e = _rstFirstPress -> -> 1 `i `uc ]
+"125
+[; ;main.c: 125:          }
+}
+[e :U 254 ]
+"127
+[; ;main.c: 127:         if(passCodeReq == 1){
+[e $ ! == -> _passCodeReq `i -> 1 `i 255  ]
+{
+"128
+[; ;main.c: 128:             LCD_displayStringRowColumn(0,0,"Pass code: ");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 1C ]
+"129
+[; ;main.c: 129:             if(inputCounter<4){
+[e $ ! < -> _inputCounter `i -> 4 `i 256  ]
+{
+"130
+[; ;main.c: 130:                 keypad_reading=keypad_read();
+[e = _keypad_reading ( _keypad_read ..  ]
+"131
+[; ;main.c: 131:                 if(keypad_reading == 0) last_reading = 0;
+[e $ ! == -> _keypad_reading `i -> 0 `i 257  ]
+[e = _last_reading -> -> 0 `i `uc ]
+[e :U 257 ]
+"135
+[; ;main.c: 135:                 if(keypad_reading != 255 && keypad_reading != 0 && keypad_reading != last_reading){
+[e $ ! && && != -> _keypad_reading `i -> 255 `i != -> _keypad_reading `i -> 0 `i != -> _keypad_reading `i -> _last_reading `i 258  ]
+{
+"136
+[; ;main.c: 136:                     last_reading = keypad_reading;
+[e = _last_reading _keypad_reading ]
+"137
+[; ;main.c: 137:                     LCD_goToRowColumn(1,inputCounter);
+[e ( _LCD_goToRowColumn (2 , -> -> 1 `i `uc _inputCounter ]
+"138
+[; ;main.c: 138:                     LCD_displayCharacter(keypad_reading);
+[e ( _LCD_displayCharacter (1 _keypad_reading ]
+"139
+[; ;main.c: 139:                     passCode[inputCounter] = keypad_reading;
+[e = *U + &U _passCode * -> _inputCounter `ux -> -> # *U &U _passCode `ui `ux -> _keypad_reading `uc ]
+"140
+[; ;main.c: 140:                     inputCounter++;
+[e ++ _inputCounter -> -> 1 `i `uc ]
+"141
+[; ;main.c: 141:                 }
+}
+[e :U 258 ]
+"142
+[; ;main.c: 142:             }
+}
+[e $U 259  ]
+"143
+[; ;main.c: 143:             else{
+[e :U 256 ]
+{
+"144
+[; ;main.c: 144:                 passCode[inputCounter] = '\0';
+[e = *U + &U _passCode * -> _inputCounter `ux -> -> # *U &U _passCode `ui `ux -> -> 0 `ui `uc ]
+"145
+[; ;main.c: 145:                 if (strcmp(passCode,"1234")==0){
+[e $ ! == ( _strcmp (2 , -> &U _passCode `*Cuc :s 2C -> 0 `i 260  ]
+{
+"146
+[; ;main.c: 146:                     if(emergencyState){
+[e $ ! != -> _emergencyState `i -> 0 `i 261  ]
+{
+"147
+[; ;main.c: 147:                         emergencyState =0;
+[e = _emergencyState -> -> 0 `i `uc ]
+"148
+[; ;main.c: 148:                     }
+}
+[e $U 262  ]
+"149
+[; ;main.c: 149:                     else{
+[e :U 261 ]
+{
+"150
+[; ;main.c: 150:                         if (mode == ACTIVATED)
+[e $ ! == -> _mode `ui -> . `E2432 0 `ui 263  ]
+"151
+[; ;main.c: 151:                             mode = DEACTIVATED;
+[e = _mode . `E2432 1 ]
+[e $U 264  ]
+"152
+[; ;main.c: 152:                         else{
+[e :U 263 ]
+{
+"153
+[; ;main.c: 153:                             mode = ACTIVATED;
+[e = _mode . `E2432 0 ]
 "154
-[; ;main.c: 154:         if(mode == ACTIVATED){
-[e $ ! == -> _mode `ui -> . `E2432 0 `ui 264  ]
-{
+[; ;main.c: 154:                             activatedStateTimer = 0;
+[e = _activatedStateTimer -> 0 `i ]
 "155
-[; ;main.c: 155:             if (emergencyState){
-[e $ ! != -> _emergencyState `i -> 0 `i 265  ]
-{
+[; ;main.c: 155:                         }
+}
+[e :U 264 ]
 "156
-[; ;main.c: 156:                 if(!passCodeReq)
-[e $ ! ! != -> _passCodeReq `i -> 0 `i 266  ]
+[; ;main.c: 156:                     }
+}
+[e :U 262 ]
 "157
-[; ;main.c: 157:                      LCD_displayStringRowColumn(0,0,"99:GATE OPEN");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 4C ]
-[e :U 266 ]
+[; ;main.c: 157:                 }
+}
+[e $U 265  ]
 "158
-[; ;main.c: 158:                     if(emergencyTimer<=1)
-[e $ ! <= _emergencyTimer -> 1 `i 267  ]
+[; ;main.c: 158:                 else{
+[e :U 260 ]
+{
 "159
-[; ;main.c: 159:                         buzzer_on(PORT_A,0);
-[e ( _buzzer_on (2 , . `E2181 0 -> -> 0 `i `uc ]
-[e $U 268  ]
+[; ;main.c: 159:                     LCD_clearScreen();
+[e ( _LCD_clearScreen ..  ]
 "160
-[; ;main.c: 160:                     else
-[e :U 267 ]
+[; ;main.c: 160:                     LCD_displayStringRowColumn(0,0,"PASS ERR");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 3C ]
 "161
-[; ;main.c: 161:                         buzzer_off(PORT_A,0);
-[e ( _buzzer_off (2 , . `E2181 0 -> -> 0 `i `uc ]
-[e :U 268 ]
+[; ;main.c: 161:                     _delay((unsigned long)((1000)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "162
-[; ;main.c: 162:                 if(emergencyTimer>=5){
-[e $ ! >= _emergencyTimer -> 5 `i 269  ]
-{
-"163
-[; ;main.c: 163:                     DIO_TogglePin(PORT_B,5);
-[e ( _DIO_TogglePin (2 , . `E2181 1 -> -> 5 `i `uc ]
-"164
-[; ;main.c: 164:                     emergencyTimer=0;
-[e = _emergencyTimer -> 0 `i ]
-"165
-[; ;main.c: 165:                 }
+[; ;main.c: 162:                 }
 }
-[e :U 269 ]
-"166
-[; ;main.c: 166:                 motor_on();
-[e ( _motor_on ..  ]
-"167
-[; ;main.c: 167:             }
-}
-[e $U 270  ]
-"168
-[; ;main.c: 168:             else
 [e :U 265 ]
-"169
-[; ;main.c: 169:             {
-{
-"170
-[; ;main.c: 170:                 if(activatedStateTimer <=5 && !passCodeReq){
-[e $ ! && <= _activatedStateTimer -> 5 `i ! != -> _passCodeReq `i -> 0 `i 271  ]
-{
-"171
-[; ;main.c: 171:                     LCD_displayStringRowColumn(0,0,"Activated");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 5C ]
-"172
-[; ;main.c: 172:                 }
+"164
+[; ;main.c: 164:                 passCodeReq=0;
+[e = _passCodeReq -> -> 0 `i `uc ]
+"165
+[; ;main.c: 165:                 passCode[0] = '\0';
+[e = *U + &U _passCode * -> -> -> 0 `i `ui `ux -> -> # *U &U _passCode `ui `ux -> -> 0 `ui `uc ]
+"166
+[; ;main.c: 166:                 inputCounter = 0;
+[e = _inputCounter -> -> 0 `i `uc ]
+"167
+[; ;main.c: 167:                 LCD_clearScreen();
+[e ( _LCD_clearScreen ..  ]
+"168
+[; ;main.c: 168:             }
 }
-[e :U 271 ]
+[e :U 259 ]
+"169
+[; ;main.c: 169:         }
+}
+[e :U 255 ]
+"172
+[; ;main.c: 172:         if(mode == ACTIVATED){
+[e $ ! == -> _mode `ui -> . `E2432 0 `ui 266  ]
+{
 "173
-[; ;main.c: 173:                 if(pir_getState(PORT_A,2)==HIGH){
-[e $ ! == -> ( _pir_getState (2 , . `E2181 0 -> -> 2 `i `uc `i -> . `E2188 1 `i 272  ]
+[; ;main.c: 173:             if (emergencyState){
+[e $ ! != -> _emergencyState `i -> 0 `i 267  ]
 {
 "174
-[; ;main.c: 174:                     GateCloseTimer = 0;
-[e = _GateCloseTimer -> 0 `i ]
+[; ;main.c: 174:                 if(!passCodeReq)
+[e $ ! ! != -> _passCodeReq `i -> 0 `i 268  ]
 "175
-[; ;main.c: 175:                     led_on(PORT_B,5);
-[e ( _led_on (2 , . `E2181 1 -> -> 5 `i `uc ]
+[; ;main.c: 175:                      LCD_displayStringRowColumn(0,0,"99:GATE OPEN");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 4C ]
+[e :U 268 ]
 "176
-[; ;main.c: 176:                     motor_on();
-[e ( _motor_on ..  ]
+[; ;main.c: 176:                     if(emergencyTimer<=1)
+[e $ ! <= _emergencyTimer -> 1 `i 269  ]
 "177
-[; ;main.c: 177:                     if(activatedStateTimer>5 && !passCodeReq)
-[e $ ! && > _activatedStateTimer -> 5 `i ! != -> _passCodeReq `i -> 0 `i 273  ]
-"178
-[; ;main.c: 178:                         LCD_displayStringRowColumn(0,0,"GATE OPENED");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 6C ]
-[e :U 273 ]
-"179
-[; ;main.c: 179:                     buzzerSet = 1;
-[e = _buzzerSet -> -> 1 `i `uc ]
-"180
-[; ;main.c: 180:                 }
-}
-[e $U 274  ]
-"181
-[; ;main.c: 181:                 else{
-[e :U 272 ]
-{
-"182
-[; ;main.c: 182:                     if(GateCloseTimer>=10){
-[e $ ! >= _GateCloseTimer -> 10 `i 275  ]
-{
-"183
-[; ;main.c: 183:                         if(GateCloseTimer <12){
-[e $ ! < _GateCloseTimer -> 12 `i 276  ]
-{
-"184
-[; ;main.c: 184:                             if(buzzerSet){
-[e $ ! != -> _buzzerSet `i -> 0 `i 277  ]
-{
-"185
-[; ;main.c: 185:                                 buzzer_on(PORT_A,0);
+[; ;main.c: 177:                         buzzer_on(PORT_A,0);
 [e ( _buzzer_on (2 , . `E2181 0 -> -> 0 `i `uc ]
+[e $U 270  ]
+"178
+[; ;main.c: 178:                     else
+[e :U 269 ]
+"179
+[; ;main.c: 179:                         buzzer_off(PORT_A,0);
+[e ( _buzzer_off (2 , . `E2181 0 -> -> 0 `i `uc ]
+[e :U 270 ]
+"180
+[; ;main.c: 180:                 if(emergencyTimer>=5){
+[e $ ! >= _emergencyTimer -> 5 `i 271  ]
+{
+"181
+[; ;main.c: 181:                     DIO_TogglePin(PORT_B,5);
+[e ( _DIO_TogglePin (2 , . `E2181 1 -> -> 5 `i `uc ]
+"182
+[; ;main.c: 182:                     emergencyTimer=0;
+[e = _emergencyTimer -> 0 `i ]
+"183
+[; ;main.c: 183:                 }
+}
+[e :U 271 ]
+"184
+[; ;main.c: 184:                 motor_on();
+[e ( _motor_on ..  ]
+"185
+[; ;main.c: 185:             }
+}
+[e $U 272  ]
 "186
-[; ;main.c: 186:                             }
-}
-[e :U 277 ]
+[; ;main.c: 186:             else
+[e :U 267 ]
 "187
-[; ;main.c: 187:                         }
-}
-[e $U 278  ]
+[; ;main.c: 187:             {
+{
 "188
-[; ;main.c: 188:                         else{
-[e :U 276 ]
+[; ;main.c: 188:                 if(activatedStateTimer <=5 && !passCodeReq){
+[e $ ! && <= _activatedStateTimer -> 5 `i ! != -> _passCodeReq `i -> 0 `i 273  ]
 {
 "189
-[; ;main.c: 189:                             buzzer_off(PORT_A,0);
-[e ( _buzzer_off (2 , . `E2181 0 -> -> 0 `i `uc ]
+[; ;main.c: 189:                     LCD_displayStringRowColumn(0,0,"Activated");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 5C ]
 "190
-[; ;main.c: 190:                             buzzerSet = 0;
-[e = _buzzerSet -> -> 0 `i `uc ]
+[; ;main.c: 190:                 }
+}
+[e :U 273 ]
 "191
-[; ;main.c: 191:                             GateCloseTimer = 20;
-[e = _GateCloseTimer -> 20 `i ]
+[; ;main.c: 191:                 if(pir_getState(PORT_A,2)==HIGH){
+[e $ ! == -> ( _pir_getState (2 , . `E2181 0 -> -> 2 `i `uc `i -> . `E2188 1 `i 274  ]
+{
 "192
-[; ;main.c: 192:                         }
-}
-[e :U 278 ]
+[; ;main.c: 192:                     GateCloseTimer = 0;
+[e = _GateCloseTimer -> 0 `i ]
 "193
-[; ;main.c: 193:                         led_off(PORT_B,5);
-[e ( _led_off (2 , . `E2181 1 -> -> 5 `i `uc ]
+[; ;main.c: 193:                     led_on(PORT_B,5);
+[e ( _led_on (2 , . `E2181 1 -> -> 5 `i `uc ]
 "194
-[; ;main.c: 194:                         motor_off();
-[e ( _motor_off ..  ]
+[; ;main.c: 194:                     motor_on();
+[e ( _motor_on ..  ]
 "195
-[; ;main.c: 195:                         if(activatedStateTimer>5 && !passCodeReq)
-[e $ ! && > _activatedStateTimer -> 5 `i ! != -> _passCodeReq `i -> 0 `i 279  ]
+[; ;main.c: 195:                     if(activatedStateTimer>5 && !passCodeReq)
+[e $ ! && > _activatedStateTimer -> 5 `i ! != -> _passCodeReq `i -> 0 `i 275  ]
 "196
-[; ;main.c: 196:                             LCD_displayStringRowColumn(0,0,"GATE CLOSED");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 7C ]
-[e :U 279 ]
-"197
-[; ;main.c: 197:                     }
-}
+[; ;main.c: 196:                         LCD_displayStringRowColumn(0,0,"GATE OPENED");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 6C ]
 [e :U 275 ]
+"197
+[; ;main.c: 197:                     buzzerSet = 1;
+[e = _buzzerSet -> -> 1 `i `uc ]
 "198
 [; ;main.c: 198:                 }
 }
+[e $U 276  ]
+"199
+[; ;main.c: 199:                 else{
 [e :U 274 ]
+{
 "200
-[; ;main.c: 200:             }
-}
-[e :U 270 ]
+[; ;main.c: 200:                     if(GateCloseTimer>=10){
+[e $ ! >= _GateCloseTimer -> 10 `i 277  ]
+{
 "201
-[; ;main.c: 201:         }
+[; ;main.c: 201:                         if(GateCloseTimer <12){
+[e $ ! < _GateCloseTimer -> 12 `i 278  ]
+{
+"202
+[; ;main.c: 202:                             if(buzzerSet){
+[e $ ! != -> _buzzerSet `i -> 0 `i 279  ]
+{
+"203
+[; ;main.c: 203:                                 buzzer_on(PORT_A,0);
+[e ( _buzzer_on (2 , . `E2181 0 -> -> 0 `i `uc ]
+"204
+[; ;main.c: 204:                             }
+}
+[e :U 279 ]
+"205
+[; ;main.c: 205:                         }
 }
 [e $U 280  ]
-"203
-[; ;main.c: 203:         else if(mode == DEACTIVATED){
-[e :U 264 ]
-[e $ ! == -> _mode `ui -> . `E2432 1 `ui 281  ]
-{
-"204
-[; ;main.c: 204:             if(emergencyState && !passCodeReq){
-[e $ ! && != -> _emergencyState `i -> 0 `i ! != -> _passCodeReq `i -> 0 `i 282  ]
-{
-"205
-[; ;main.c: 205:                 LCD_displayStringRowColumn(0,0,"NO ER: DEACTIVE");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 8C ]
 "206
-[; ;main.c: 206:             }
-}
-[e $U 283  ]
-"207
-[; ;main.c: 207:             else
-[e :U 282 ]
-"208
-[; ;main.c: 208:             {
+[; ;main.c: 206:                         else{
+[e :U 278 ]
 {
+"207
+[; ;main.c: 207:                             buzzer_off(PORT_A,0);
+[e ( _buzzer_off (2 , . `E2181 0 -> -> 0 `i `uc ]
+"208
+[; ;main.c: 208:                             buzzerSet = 0;
+[e = _buzzerSet -> -> 0 `i `uc ]
 "209
-[; ;main.c: 209:                 if(!passCodeReq)
-[e $ ! ! != -> _passCodeReq `i -> 0 `i 284  ]
+[; ;main.c: 209:                             GateCloseTimer = 20;
+[e = _GateCloseTimer -> 20 `i ]
 "210
-[; ;main.c: 210:                     LCD_displayStringRowColumn(0,0,"Deactivated");
-[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 9C ]
-[e :U 284 ]
+[; ;main.c: 210:                         }
+}
+[e :U 280 ]
 "211
-[; ;main.c: 211:             }
+[; ;main.c: 211:                         led_off(PORT_B,5);
+[e ( _led_off (2 , . `E2181 1 -> -> 5 `i `uc ]
+"212
+[; ;main.c: 212:                         motor_off();
+[e ( _motor_off ..  ]
+"213
+[; ;main.c: 213:                         if(activatedStateTimer>5 && !passCodeReq)
+[e $ ! && > _activatedStateTimer -> 5 `i ! != -> _passCodeReq `i -> 0 `i 281  ]
+"214
+[; ;main.c: 214:                             LCD_displayStringRowColumn(0,0,"GATE CLOSED");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 7C ]
+[e :U 281 ]
+"215
+[; ;main.c: 215:                     }
+}
+[e :U 277 ]
+"216
+[; ;main.c: 216:                 }
+}
+[e :U 276 ]
+"218
+[; ;main.c: 218:             }
+}
+[e :U 272 ]
+"219
+[; ;main.c: 219:         }
+}
+[e $U 282  ]
+"221
+[; ;main.c: 221:         else if(mode == DEACTIVATED){
+[e :U 266 ]
+[e $ ! == -> _mode `ui -> . `E2432 1 `ui 283  ]
+{
+"222
+[; ;main.c: 222:             if(emergencyState && !passCodeReq){
+[e $ ! && != -> _emergencyState `i -> 0 `i ! != -> _passCodeReq `i -> 0 `i 284  ]
+{
+"223
+[; ;main.c: 223:                 LCD_displayStringRowColumn(0,0,"NO ER: DEACTIVE");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 8C ]
+"224
+[; ;main.c: 224:             }
+}
+[e $U 285  ]
+"225
+[; ;main.c: 225:             else
+[e :U 284 ]
+"226
+[; ;main.c: 226:             {
+{
+"227
+[; ;main.c: 227:                 if(!passCodeReq)
+[e $ ! ! != -> _passCodeReq `i -> 0 `i 286  ]
+"228
+[; ;main.c: 228:                     LCD_displayStringRowColumn(0,0,"Deactivated");
+[e ( _LCD_displayStringRowColumn (3 , , -> -> 0 `i `uc -> -> 0 `i `uc :s 9C ]
+[e :U 286 ]
+"229
+[; ;main.c: 229:             }
+}
+[e :U 285 ]
+"230
+[; ;main.c: 230:             led_on(PORT_B,5);
+[e ( _led_on (2 , . `E2181 1 -> -> 5 `i `uc ]
+"231
+[; ;main.c: 231:             motor_off();
+[e ( _motor_off ..  ]
+"232
+[; ;main.c: 232:         }
 }
 [e :U 283 ]
-"212
-[; ;main.c: 212:             led_on(PORT_B,5);
-[e ( _led_on (2 , . `E2181 1 -> -> 5 `i `uc ]
-"213
-[; ;main.c: 213:             motor_off();
-[e ( _motor_off ..  ]
-"214
-[; ;main.c: 214:         }
-}
-[e :U 281 ]
-[e :U 280 ]
-"215
-[; ;main.c: 215:     }
+[e :U 282 ]
+"233
+[; ;main.c: 233:     }
 }
 [e :U 243 ]
 [e $U 244  ]
 [e :U 245 ]
-"216
-[; ;main.c: 216:   return;
+"234
+[; ;main.c: 234:   return;
 [e $UE 242  ]
-"217
-[; ;main.c: 217: }
+"235
+[; ;main.c: 235: }
 [e :UE 242 ]
 }
 [a 9C 68 101 97 99 116 105 118 97 116 101 100 0 ]

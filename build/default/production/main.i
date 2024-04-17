@@ -4082,7 +4082,7 @@ int sysButtonTimer = 0;
 int activatedStateTimer = 0;
 int GateCloseTimer=20;
 int emergencyTimer=0;
-
+int rstButtonTimer=0;
 void __attribute__((picinterrupt(("")))) Timer0_ISR(){
     if(TMR0IF){
         TMR0IF = 0;
@@ -4094,6 +4094,7 @@ void __attribute__((picinterrupt(("")))) Timer0_ISR(){
         activatedStateTimer++;
         GateCloseTimer++;
         emergencyTimer++;
+        rstButtonTimer++;
     }
 }
 
@@ -4110,6 +4111,9 @@ void main(void) {
     uint8_t inputCounter = 0;
     uint8_t emergencyState = 0;
     uint8_t buzzerSet = 0;
+    uint8_t rstFirstPress = 0;
+    uint8_t sysFirstPress = 0;
+
     char passCode[5] = {0};
 
     uint8_t passCodeReq = 0;
@@ -4134,16 +4138,20 @@ void main(void) {
     uint8_t last_reading = 0;
     while(1){
         if(button_getState(PORT_A,3)== HIGH){
-            sysButtonTimer = 0;
-            while(button_getState(PORT_A,3)== HIGH){
-                if(sysButtonTimer >=3){
-                    passCodeReq = 1;
-                    passCode[0] = '\0';
-                    inputCounter = 0;
-                    LCD_clearScreen();
-                    break;
-                }
+            if(sysFirstPress){
+               sysButtonTimer = 0;
+               sysFirstPress = 0;
             }
+            if(sysButtonTimer >=3){
+                passCodeReq = 1;
+                passCode[0] = '\0';
+                inputCounter = 0;
+                LCD_clearScreen();
+                sysFirstPress = 1;
+            }
+        }
+        else{
+            sysFirstPress = 1;
         }
 
          if(button_getState(PORT_A,5)== HIGH){
@@ -4153,11 +4161,21 @@ void main(void) {
          }
 
          if(button_getState(PORT_A,4)== HIGH){
+             if(rstFirstPress){
+                 rstButtonTimer =0;
+                 rstFirstPress = 0;
+             }
+             if(rstButtonTimer>=8){
                     passCodeReq = 1;
                     passCode[0] = '\0';
                     inputCounter = 0;
                     LCD_clearScreen();
+                    rstFirstPress =1;
+             }
             }
+         else{
+             rstFirstPress = 1;
+         }
 
         if(passCodeReq == 1){
             LCD_displayStringRowColumn(0,0,"Pass code: ");
